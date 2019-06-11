@@ -1,5 +1,7 @@
 package com.study.hong.materialdesign;
 
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -14,6 +16,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawer_layout;
+    private NavigationView nav_view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         drawer_layout = findViewById(R.id.drawer_layout);
+        nav_view = findViewById(R.id.nav_view);
         setSupportActionBar(toolbar);
         //这里是getSupportActionBar，不是getActionBar
         ActionBar actionBar = getSupportActionBar();
@@ -28,6 +32,14 @@ public class MainActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(R.drawable.img_menu);
         }
+        nav_view.setCheckedItem(R.id.nav_call);
+        nav_view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                drawer_layout.closeDrawers();
+                return true;
+            }
+        });
     }
 
     @Override
@@ -58,4 +70,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
+
 }
