@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.study.hong.materialdesign.MainActivity">
+ <FrameLayout
+     android:layout_width="match_parent"
+     android:layout_height="match_parent">
  <!--layout_height：适用原生的actionbar的高度-->
  <!--popupTheme:设置弹出框的主体-->
  <!--theme:设置深色,防止文字显示成黑色-->
@@ -14,7 +18,14 @@
      android:layout_height="?attr/actionBarSize"
      android:background="?attr/colorPrimary"
      android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-     app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
- </android.support.v7.widget.Toolbar>
-</FrameLayout>
+ </FrameLayout>
+ <TextView
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:text="this is menu"
+     android:background="#FFF"
+     android:textSize="30sp"
+     android:layout_gravity="start"/>
+</android.support.v4.widget.DrawerLayout>
