@@ -1,11 +1,22 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
+        <!--标题的那一栏颜色-->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!--最顶部的导航颜色-->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark2</item>
+        <!--主体内容的颜色-->
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
+    <!--<style name="AppTheme2" parent="ThemeOverlay.AppCompat.Dark.ActionBar">-->
+        <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+        <!--&lt;!&ndash;标题的那一栏颜色&ndash;&gt;-->
+        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
+        <!--&lt;!&ndash;最顶部的导航颜色&ndash;&gt;-->
+        <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+        <!--&lt;!&ndash;主体内容的颜色&ndash;&gt;-->
+        <!--<item name="colorAccent">@color/colorAccent</item>-->
+    <!--</style>-->
 </resources>
