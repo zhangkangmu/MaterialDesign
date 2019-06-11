@@ -1,7 +1,9 @@
 package com.study.hong.materialdesign;
 
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -17,14 +19,19 @@ public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawer_layout;
     private NavigationView nav_view;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         drawer_layout = findViewById(R.id.drawer_layout);
         nav_view = findViewById(R.id.nav_view);
+        nav_view = findViewById(R.id.nav_view);
+        fab = findViewById(R.id.fab);
+
         setSupportActionBar(toolbar);
         //这里是getSupportActionBar，不是getActionBar
         ActionBar actionBar = getSupportActionBar();
@@ -38,6 +45,18 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 drawer_layout.closeDrawers();
                 return true;
+            }
+        });
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Snackbar.make(v,"data added",Snackbar.LENGTH_SHORT).setAction("undo", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(getApplicationContext(),"data restored",Toast.LENGTH_SHORT).show();
+                    }
+                }).show();
             }
         });
     }
