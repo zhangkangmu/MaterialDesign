@@ -6,7 +6,8 @@
         <!--标题的那一栏颜色-->
         <item name="colorPrimary">@color/colorPrimary</item>
         <!--最顶部的导航颜色-->
-        <item name="colorPrimaryDark">@color/colorPrimaryDark2</item>
+        <!--<item name="colorPrimaryDark">@color/colorPrimaryDark2</item>-->
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
         <!--主体内容的颜色-->
         <item name="colorAccent">@color/colorAccent</item>
     </style>
@@ -19,4 +20,8 @@
         <!--&lt;!&ndash;主体内容的颜色&ndash;&gt;-->
         <!--<item name="colorAccent">@color/colorAccent</item>-->
     <!--</style>-->
+
+    <style name="ActivityTheme" parent="AppTheme">
+    <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
 </resources>

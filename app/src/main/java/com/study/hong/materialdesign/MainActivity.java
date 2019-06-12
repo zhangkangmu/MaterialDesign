@@ -1,6 +1,8 @@
 package com.study.hong.materialdesign;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -13,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +24,7 @@ import android.widget.Toast;
 import com.study.hong.materialdesign.adapter.PersonAdapter;
 import com.study.hong.materialdesign.bean.Person;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private NavigationView nav_view;
     private FloatingActionButton fab;
     private Person[] mPerson = {new Person("路飞", R.drawable.ic_haizeiwang), new Person("小猫", R.drawable.ic_header), new Person("路飞", R.drawable.ic_haizeiwang), new Person("小猫", R.drawable.ic_header), new Person("路飞", R.drawable.ic_haizeiwang), new Person("小猫", R.drawable.ic_header), new Person("小猫", R.drawable.ic_header), new Person("路飞", R.drawable.ic_haizeiwang), new Person("小猫", R.drawable.ic_header), new Person("路飞", R.drawable.ic_haizeiwang), new Person("小猫", R.drawable.ic_header), new Person("小猫", R.drawable.ic_header), new Person("路飞", R.drawable.ic_haizeiwang), new Person("小猫", R.drawable.ic_header), new Person("路飞", R.drawable.ic_haizeiwang), new Person("小猫", R.drawable.ic_header)};
-    private List<Person> person = new ArrayList<>();
+    private List<Person> person = new ArrayList<Person>();
     private RecyclerView mRecyclerView;
     private PersonAdapter adapter;
     private SwipeRefreshLayout mSwipeRefresh;
@@ -136,11 +140,14 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.back:
-                Toast.makeText(this, "back", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(this,PersonActivity.class);
+                intent.putExtra("persons", (Serializable) person);
+                startActivity(intent);
                 break;
             case R.id.delete:
-                Toast.makeText(this, "delete", Toast.LENGTH_SHORT).show();
-                break;
+                Intent intent2=new Intent(this,OtherActivity.class);
+                intent2.putExtra("persons", (Serializable) person);
+                startActivity(intent2);
             case R.id.Settings:
                 Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
                 break;

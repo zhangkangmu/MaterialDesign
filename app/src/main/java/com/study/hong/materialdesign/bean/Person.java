@@ -1,10 +1,14 @@
 package com.study.hong.materialdesign.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by hong on 2019/6/12.
  */
 
-public class Person {
+public class Person  implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private String name;
     private int imgId;
 

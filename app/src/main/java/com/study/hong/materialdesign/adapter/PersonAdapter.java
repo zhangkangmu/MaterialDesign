@@ -1,6 +1,8 @@
 package com.study.hong.materialdesign.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.study.hong.materialdesign.PersonActivity;
 import com.study.hong.materialdesign.R;
 import com.study.hong.materialdesign.bean.Person;
 
@@ -34,11 +37,16 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.ViewHodler
     }
 
     @Override
-    public void onBindViewHolder(ViewHodler holder, int position) {
+    public void onBindViewHolder(ViewHodler holder, final int position) {
         Person person =mPerson.get(position);
         Glide.with(mContext).load(person.getImgId()).into(holder.image);
         holder.tv_name.setText(person.getName());
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
     }
 
     @Override

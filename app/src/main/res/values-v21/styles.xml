@@ -1,0 +1,17 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <!--标题的那一栏颜色-->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <!--最顶部的导航颜色-->
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <!--主体内容的颜色-->
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="ActivityTheme" parent="AppTheme">
+    <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+</resources>
