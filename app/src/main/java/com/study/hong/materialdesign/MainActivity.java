@@ -7,6 +7,7 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -28,16 +29,18 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawer_layout;
     private NavigationView nav_view;
     private FloatingActionButton fab;
-    private Person[] mPerson = {new Person("路飞", R.drawable.ic_haizeiwang), new Person("小猫", R.drawable.ic_header), new Person("路飞", R.drawable.ic_haizeiwang), new Person("小猫", R.drawable.ic_header), new Person("路飞", R.drawable.ic_haizeiwang), new Person("小猫", R.drawable.ic_header),new Person("小猫", R.drawable.ic_header), new Person("路飞", R.drawable.ic_haizeiwang), new Person("小猫", R.drawable.ic_header), new Person("路飞", R.drawable.ic_haizeiwang), new Person("小猫", R.drawable.ic_header),new Person("小猫", R.drawable.ic_header), new Person("路飞", R.drawable.ic_haizeiwang), new Person("小猫", R.drawable.ic_header), new Person("路飞", R.drawable.ic_haizeiwang), new Person("小猫", R.drawable.ic_header)};
+    private Person[] mPerson = {new Person("路飞", R.drawable.ic_haizeiwang), new Person("小猫", R.drawable.ic_header), new Person("路飞", R.drawable.ic_haizeiwang), new Person("小猫", R.drawable.ic_header), new Person("路飞", R.drawable.ic_haizeiwang), new Person("小猫", R.drawable.ic_header), new Person("小猫", R.drawable.ic_header), new Person("路飞", R.drawable.ic_haizeiwang), new Person("小猫", R.drawable.ic_header), new Person("路飞", R.drawable.ic_haizeiwang), new Person("小猫", R.drawable.ic_header), new Person("小猫", R.drawable.ic_header), new Person("路飞", R.drawable.ic_haizeiwang), new Person("小猫", R.drawable.ic_header), new Person("路飞", R.drawable.ic_haizeiwang), new Person("小猫", R.drawable.ic_header)};
     private List<Person> person = new ArrayList<>();
     private RecyclerView mRecyclerView;
     private PersonAdapter adapter;
+    private SwipeRefreshLayout mSwipeRefresh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Toolbar使用
         Toolbar toolbar = findViewById(R.id.toolbar);
         drawer_layout = findViewById(R.id.drawer_layout);
         nav_view = findViewById(R.id.nav_view);
@@ -51,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(R.drawable.img_menu);
         }
+
+        //navigation使用
         nav_view.setCheckedItem(R.id.nav_call);
         nav_view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -60,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Snackbar的使用
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,10 +80,42 @@ public class MainActivity extends AppCompatActivity {
 
         initPerson();
 
+        //卡片布局，appbarlayout的使用
         mRecyclerView = findViewById(R.id.recycler_view);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(this,2));
+        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         adapter = new PersonAdapter(getApplicationContext(), person);
         mRecyclerView.setAdapter(adapter);
+
+        //刷新的空间SwipeRefresh
+        mSwipeRefresh = findViewById(R.id.swipe_refresh);
+        mSwipeRefresh.setColorSchemeResources(R.color.colorPrimary);   //注意是Resources
+        mSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshperson();
+            }
+
+        });
+    }
+
+    private void refreshperson() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        initPerson();
+                        mSwipeRefresh.setRefreshing(false);
+                    }
+                });
+            }
+        }).start();
     }
 
     private void initPerson() {
